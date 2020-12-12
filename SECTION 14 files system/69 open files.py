@@ -7,7 +7,7 @@
 # to work with file system, we must use the next module
 from io import open
 
-#if I want to open the file with a route absolute then I must import it library
+#if I want to open the file with a absolute route  then I must import it library
 import pathlib
 
 # ================================ open file
