@@ -21,8 +21,7 @@ cursor.execute("SHOW DATABASES")
 for bd in cursor : 
     print(bd) """
 
-# ========================== create tables
-# after to create table, to check my database in phpMyAdmin and to check its structure
+
 cursor.execute(""" 
 CREATE TABLE IF NOT EXISTS vehicules( #it evits to create the same table many times
     id int(10) auto_increment not null,
@@ -33,10 +32,30 @@ CREATE TABLE IF NOT EXISTS vehicules( #it evits to create the same table many ti
 )
 """)
 
-#to check tables with python
+
 cursor.execute("SHOW TABLES")
 
 for table in cursor : 
     print(table)
 
-""" VIDEO 98 FINISHED """
+""" 
+#to insert data in a table
+cursor.execute("INSERT INTO vehicules VALUES(null, 'Opel', 'Astra', 18500)")
+
+#it is important to execute the commit, because then it don't save the query
+#the database is who has the commit but don't cursor
+database.commit()
+ """
+
+#inserting data masively
+cars = [
+    ('Seat', 'Ibiza', 5000),
+    ('Lamborghini', 'Huracan', 50000),
+    ('Toyota', 'las narices', 10000), #it is important doesn't insert space between a data 'Toyota  ' for example
+    ('Bugatti Veiron', 'la de CR7', 1000000),
+]
+
+#inserting many cars to the table
+                                                    # %s allows to substitute by other data
+cursor.executemany("INSERT INTO vehicules VALUES(null, %s, %s, %s)", cars)
+database.commit()

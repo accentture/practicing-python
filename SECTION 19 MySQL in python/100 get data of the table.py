@@ -21,8 +21,7 @@ cursor.execute("SHOW DATABASES")
 for bd in cursor : 
     print(bd) """
 
-# ========================== create tables
-# after to create table, to check my database in phpMyAdmin and to check its structure
+
 cursor.execute(""" 
 CREATE TABLE IF NOT EXISTS vehicules( #it evits to create the same table many times
     id int(10) auto_increment not null,
@@ -33,10 +32,21 @@ CREATE TABLE IF NOT EXISTS vehicules( #it evits to create the same table many ti
 )
 """)
 
-#to check tables with python
-cursor.execute("SHOW TABLES")
 
-for table in cursor : 
-    print(table)
+#to get data of the table
+#cursor.execute("SELECT * FROM vehicules ") #getting all of result of the table
+#cursor.execute("SELECT marca FROM vehicules ") #getting only marca
 
-""" VIDEO 98 FINISHED """
+                                        # WHERE : to work as conditional
+cursor.execute("SELECT * FROM vehicules WHERE price > 10000 AND marca = 'Lamborghini' ") 
+
+result = cursor.fetchall()
+
+for car in result :
+    print(car)
+
+
+# to get first element of the table
+cursor.execute("SELECT * FROM vehicules")
+result = cursor.fetchone()
+print("Gettin only the first result = ", result)
