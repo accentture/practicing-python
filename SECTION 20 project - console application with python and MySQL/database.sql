@@ -24,7 +24,7 @@ fecha       date not null,
             /* these names is wrote by convention, I can use whatever name */
 CONSTRAINT  pk_user PRIMARY KEY(id), /* primary key */
 CONSTRAINT  uq_email UNIQUE(email) /* unique field, it cannot be repeated in the differents registers that the table has got */
-)ENGINE = InnoDb; /* it means that will keep the referencial identidy  and all of kind of relations beetwen differents tables */
+)ENGINE = InnoDb; /* it means that will keep the referential identidy  and all of kind of relations beetwen differents tables */
 
 
 CREATE TABLE notes(

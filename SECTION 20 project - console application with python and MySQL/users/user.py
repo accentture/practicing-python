@@ -54,4 +54,21 @@ class User :
         return result
 
     def identify(self) :
-        return
+
+        #query to check if user exists
+        sql = "SELECT * FROM users WHERE email = %s AND password = %s"
+
+        #encode password
+        _encoded = hashlib.sha256()  
+        _encoded.update(self.password.encode('utf8')) 
+
+        #data to pass to query
+        user = (self.email, _encoded.hexdigest())
+
+        cursor.execute(sql, user)
+
+        #saving result of query
+        result = cursor.fetchone() # fetchone : get one user
+                                   # if I want a query success, I neew the correct password
+
+        return result #result is a tuple and wil be got from database
