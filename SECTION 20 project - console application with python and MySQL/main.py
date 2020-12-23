@@ -20,7 +20,7 @@ Disponible Actions
     - login
 """)
 
-doThe = actions.Actions() #instantiting class
+doThe = actions.Actions() #instantiating class
 
 action = input('¿What do you want to do?: ')
 

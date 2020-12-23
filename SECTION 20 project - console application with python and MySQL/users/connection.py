@@ -15,3 +15,4 @@ def toConnect() :
     cursor = database.cursor(buffered = True) # buffered = True : it allows to do many queries using the same cursor
 
     return [database, cursor]
+

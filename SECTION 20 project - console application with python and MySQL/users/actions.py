@@ -51,19 +51,23 @@ class Actions :
             -exit(exit)
         """)
 
-        action = input("you want to do ?: ")
+        action = input("what you want to do ?: ")
         toDoThe = notes.actions.Actions()
+
         print(toDoThe)
         if action == 'create' :
             toDoThe.create(user)
+            #print("let's create")
             self.proximeActions(user)
         
         elif action == 'display' :
             print("let's display")
+            toDoThe.display(user)
             self.proximeActions(user)
 
         elif action == 'eliminate' :
             print("let's eliminate")
+            toDoThe.remove(user)
             self.proximeActions(user)
 
         elif action == 'exit' :
