@@ -1,7 +1,7 @@
 
 import pathlib, sys
 sys.path.append(str(pathlib.Path().absolute()) + '/SECTION 20.1 my project - my personal  blog')
-import controllers.actionsUser as controllerUser
+import controllers.actionsForUser as controllerUser
 
 print("""
     * Wellcome to personal blog.

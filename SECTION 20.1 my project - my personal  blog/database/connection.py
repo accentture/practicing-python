@@ -15,3 +15,7 @@ def toConnect() :
         'database':database,
         'cursor':cursor
     }
+
+connection = toConnect()
+database = connection['database']
+cursor = connection['cursor']

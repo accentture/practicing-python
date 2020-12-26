@@ -70,5 +70,5 @@ class User :
         #saving result of query
         result = cursor.fetchone() # fetchone : get one user
                                    # if I want a query success, I neew the correct password
-
+        
         return result #result is a tuple and wil be got from database
