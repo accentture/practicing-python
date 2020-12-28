@@ -43,7 +43,10 @@ class ActionNotes :
 
         if len(topic) > 1 and len(keyword) > 1:
             note = model.ProgrammingNote(user_id, topic, "", keyword)
-            note.remove()
+            removed = note.remove()
+
+            if removed :
+                print("Your note has been removed.")
 
     def update(self, user_id) : 
         print(f"========== Updating note ==========")
@@ -52,4 +55,9 @@ class ActionNotes :
 
         if len(topic) > 1 and len(keyword) > 1:
             note = model.ProgrammingNote(user_id, topic, "", keyword)
+
+            updated = note.update()
+
+            if updated :
+                print("Your note has been updated sucessfully.")
             

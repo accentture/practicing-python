@@ -28,27 +28,73 @@ class ProgrammingNote :
 
         return result
     def remove(self) :
-        notesWithKeyword = self.getNotesUsingKeyword()
+        notesWithKeyword = self.__getNotesUsingKeyword()
+        numberOfNote = self.__showNotesWithKeyword(notesWithKeyword, 'remove')
 
-        date = datetime.datetime.now()
-        sql = "DELETE FROM programming WHERE "
-        user = ""
+        try:
+            date = datetime.datetime.now()
+            sql = "DELETE FROM programming WHERE id = %s AND topic = %s"
+            note = (numberOfNote, self.topic)
+
+            cursor.execute(sql, note)
+            database.commit()
+
+            result = cursor.rowcount
+        except Exception as err:
+            result = 0
+            print() 
+
+        return result
 
     def update(self) :
-        date = datetime.datetime.now()
+        notesWithKeyword = self.__getNotesUsingKeyword()
+        numberOfNote = self.__showNotesWithKeyword(notesWithKeyword, 'update')
 
-    def getNotesUsingKeyword(self) :
+        newDescription = input(f"Enter a new description for your note number {numberOfNote} : ")
+        date = datetime.datetime.now()
+        print("My description => ", newDescription)
+        
+        try : 
+            sql = "UPDATE programming SET description = %s AND _date = %s WHERE id = %s AND topic = %s"
+            note = (newDescription, date, numberOfNote, self.topic) 
+            cursor.execute(sql, note)
+            database.commit()
+
+            result = cursor.rowcount
+
+        except Exception as err :
+            result = 0
+            print("An error has ocurred trying to update", type(err).__name__)
+
+        return result
+
+    def __getNotesUsingKeyword(self) :
         sql = "SELECT * FROM programming"
         cursor.execute(sql)
         result = cursor.fetchall()
 
-        notesWithKeyword = []
+        notesWithKeyword = [] #to show to user
 
         for note in result :
             if self.keyword in note[3] :
-                notesWithKeyword.appen(note)
+                notesWithKeyword.append(note)
             
         return notesWithKeyword
+
+    def __showNotesWithKeyword(self, notes, query) :
+
+        print("\n=========== The next notes have your keyword:")
+        for note in notes : 
+            print(note)
+
+        print(f"\nChoose the first position of the tuple. It allows to {query} your note.")
+
+        position = input("Write a number: ")
+
+        return position
+
+    
+            
 
     
 
