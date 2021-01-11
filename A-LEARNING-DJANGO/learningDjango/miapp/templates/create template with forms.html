@@ -1,0 +1,33 @@
+<!-- inheritancing my main layout (inheritancing its html structure)-->
+
+
+{% extends '_layout.html' %}
+
+<!-- it is a place adecuated to charge my custom filter -->
+{% load filters %}
+
+{% block title %} Formularios en Django {% endblock %}
+
+<!-- to charge content in my layout -->
+{% block content %}
+    <h1 class="title">Formularios en Django</h1>
+
+    <form action="{% url 'save_article_with_form' %}" method="GET">
+        <label for="title">Titulo</label>
+        <input type="text" name="title" placeholder="Escribe tu nombre">
+
+        <label for="content">Contenido</label>
+        <textarea name="content" ></textarea>
+
+        <label for="public">¿Publicado?</label>
+        <select name="public" id="">
+            <option value="1">Si</option>
+            <option value="0">No</option>
+        </select>
+
+        <input type="input" value="Guardar">
+    </form>
+    
+
+{% endblock %}
+

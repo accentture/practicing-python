@@ -1,0 +1,12 @@
+{% extends '_layout.html' %}
+
+{% block title %} Hola mundo {% endblock %}
+
+{% block content %}
+
+    <!-- it allows to heredate tags of content field -->
+    {{ block.super }}
+
+    <h1 class="title">Hola mundo con Django</h1>
+    <h3>Soy Alejandro</h3>
+{% endblock %}

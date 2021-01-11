@@ -1,0 +1,38 @@
+<!-- inheritancing my main layout (inheritancing its html structure)-->
+
+
+{% extends '_layout.html' %}
+
+
+{% block title %} Listado de articulos {% endblock %}
+
+<!-- to charge content in my layout -->
+{% block content %}
+    <h1 class="title">Listado de articulos</h1>
+
+    <ul>
+        {% for article in articles %}
+            <li>
+                <h3>{{article.id}} - {{article.title}}</h3>
+                <span>{{article.created_at}}</span>
+                {% if article.public %}
+                    <strong> - Publicado</strong>
+                {% else %}
+                    <strong>Privado</strong>
+                {% endif %}
+                <p>
+                    {{article.content}}
+                
+                                                <!-- delete_article : name of path -->
+                                                <!-- id=article.id  : param of url  -->
+                    <a href="{% url 'delete_article' id=article.id %}">Eliminar</a>
+                </p>
+
+                                                
+                <br>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+

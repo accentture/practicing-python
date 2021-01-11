@@ -1,0 +1,14 @@
+<!-- this template will be charged in other template -->
+<hr>
+<h1>{{greeting}} {{name}} - "using include" </h1> <!-- interpolation will be able to be charged after to include in other template -->
+<h1>Estamos a 2021</h1>
+<p>Años hasta el 2050</p>
+    <ul>
+        {%for year in years %}
+
+            <!--    |divisibleby:   : using a filter instead of %, in filter must not has spaces, it returns a boolean -->
+            {% if year|divisibleby:2 == True %}
+                <li>{{year}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>

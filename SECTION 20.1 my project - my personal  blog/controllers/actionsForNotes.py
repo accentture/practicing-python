@@ -1,30 +1,42 @@
 import pathlib, sys, datetime, hashlib
 sys.path.append(str(pathlib.Path().absolute()) + '/SECTION 20.1 my project - my personal  blog')
-import models.note as model
+import models.programming as programming
 
 class ActionNotes : 
-    def __init__(self, kindOfNote) :
+    def __init__(self, useModel) :
         pass
-        self.kindOfNote = kindOfNote
-    
+        self.models = {}
+        self.useModel = useModel
+        self.createCollectionOfModels()
+
+    def createCollectionOfModels(self) :
+        self.models['programming'] = programming.ProgrammingModel
+        print("my models => ", self.models)
+
     def askForActions(self, user_id) :
-        print(f"========== What action do you do with {self.kindOfNote} notes? ==========")
+        print(f"========== What action do you do with {self.useModel} notes? ==========")
         print("""
             - create 
             - remove
             - update
+            - exit
         """)
 
         action = input("Choose action: ")
 
         if action == 'create':
             self.create(user_id)
+            self.askForActions(user_id) #creating a infinity loop
         elif action == 'remove': 
             self.remove(user_id)
+            self.askForActions(user_id)
         elif action == 'update' :
             self.update(user_id)
+            self.askForActions(user_id)
+        elif action == 'exit':
+            print('Ok, We will see you soon.')
         else :
-            print("This action doesn't exists.")
+            print("It option doens't exists.")
 
     def create(self, user_id) :
         print(f"========== Creating note ==========")
@@ -33,7 +45,10 @@ class ActionNotes :
 
         # checkig if inputs are full
         if topic and description :
-            note = model.ProgrammingNote(user_id, topic, description)
+
+            #I STAYED HERE
+            modelToUse = self.models[self.useModel]
+            note = modelToUse(user_id, topic, description)
             note.create()
 
     def remove(self, user_id) :

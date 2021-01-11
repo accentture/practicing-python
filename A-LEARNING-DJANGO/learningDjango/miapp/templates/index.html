@@ -1,0 +1,53 @@
+<!-- here will be a language of templates completly adapted, it is very distint to python language -->
+<!-- here exist a specific language of templates  -->
+<!-- it allows to difference between python and template language -->
+
+<!-- charging my main layout -->
+{% extends '_layout.html' %} 
+
+{% block title %} {{title}} {% endblock %} 
+
+{% block content %}
+    <h1 class="title">{{title}}</h1>
+    
+    
+
+
+    {% comment  %} passing param through interpolation, after to pass to render method {% endcomment %} 
+    <p>{{my_variable}}</p>
+
+    <!-- using conditional -->
+    {% if name and name == 'Jonathan Alejandro'%}
+        <p>{{name}}</p>
+    
+    {% else %}
+        <strong>El nombre no existe o no coincide</strong>
+    {% endif %}
+
+
+    <h3>Listado de lenguages de programacion - for loop </h3>
+    <!-- using for loop -->
+    <ul>
+        {% for language in languages%}
+
+                            <!-- forloop.first : to get first element of a list, return boolean -->
+                            <!-- forloop.first : to get last element of a list, return boolean -->
+                            <!-- forloop.counter : to get index -->
+                            <!-- forloop.counter0 : index start in 0 -->
+                            <!-- forloop.revcounter : inverse index -->
+            <li>{{language}} -  {{forloop.first}} - {{forloop.last}} - {{forloop.counter}} - {{forloop.counter0}} - {{forloop.revcounter}}</li>
+
+        <!-- to check if a list is empty, it act as a conditional -->
+        {% empty %}
+            <p>No hay lenguajes que mostrar</p>
+
+        {% endfor %}
+
+    </ul>
+    
+    <!-- including other template in this teplate -->
+                            <!-- passing values to include and creating a variable -->
+                            <!-- only : allows inheritance for a specific variables -->
+    {% include 'current date.html' with greeting='Hola mundo desde plantilla' only %}
+
+{% endblock %}

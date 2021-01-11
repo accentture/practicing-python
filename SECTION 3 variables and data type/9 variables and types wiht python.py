@@ -1,4 +1,3 @@
-# I stayed here
 
 #it is not necessary to set var or let
 texts = 'Wellcome to master in python'

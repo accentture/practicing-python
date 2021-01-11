@@ -1,0 +1,46 @@
+<!-- inheritancing my main layout (inheritancing its html structure)-->
+
+
+{% extends '_layout.html' %}
+
+<!-- it is a place adecuated to charge my custom filter -->
+{% load filters %}
+
+{% block title %} Página de pruebas {% endblock %}
+
+<!-- to charge content in my layout -->
+{% block content %}
+    <h1 class="title">Pagina Django</h1>
+
+    <!-- using a filter to remove spaces in string -->
+                            <!-- this filter need two params, "cut" is first param and    " " is second param -->
+                            <!-- exist many filter provided by Django -->
+    <h2>{{ "Creado Por Korah" | cut:" " }}</h2>
+
+    <!-- this filter check if exist anything in "text", if doesn't exists it, asign a value by default -->
+    {{text|default:"No hay nada en este texto" }}
+
+    <!-- filter to get first value of a list -->
+    <p>{{list|join:', '}}</p>
+            <!-- filters: first, last, join -->
+
+    <!-- filter to length -->
+    <p>{{'texto pruebas'|length}}</p>
+
+    <!-- filter for uppercase -->
+    <p>{{'texto pruebas'|upper}}</p>
+
+    <!-- filter to get a random item from an array -->
+    <p>random - {{list|random}}</p>
+
+    <!-- filter to remove html tags --> 
+                                                                <!-- combinating filers -->
+    <p>remove html tags - {{'<h1>texto</h1> <strong>pruebas</strong>' |striptags|wordcount }}</p>
+
+
+    <!-- using my custom filter -->
+                                                <!-- safe : to force to convert html tags -->
+    <p>{{"Jonathan Alejando, software engineer"|greeting|safe }}</p>
+
+{% endblock %}
+

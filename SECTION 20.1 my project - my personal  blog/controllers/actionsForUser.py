@@ -39,12 +39,12 @@ class ActionsUser :
         print("""
             ========== Choose what type of note do you want to create ==========
                 - programming 
-                - food 
+                - foods 
         """)
 
         notes = input("Choose your note: ")
 
-        if notes == 'programming' or notes == 'food':
+        if notes == 'programming' or notes == 'foods':
             controller = controllerNotes.ActionNotes(notes)
             controller.askForActions(user_id)
         else : 

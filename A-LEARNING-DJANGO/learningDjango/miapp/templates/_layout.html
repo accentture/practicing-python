@@ -1,0 +1,100 @@
+<!-- in this file let's charge all my templates -->
+
+<!-- it is important to charge static foler to able to use css file -->
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %} <!-- this block will be substituided -->
+            <!-- here will be title of every page -->
+            
+        {% endblock %}
+        | Jonathan Alejandro
+    </title>
+
+                        <!-- charging styles -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="{% static 'images/logo.png' %}" alt="" />
+            <h1>Sitio web con Django</h1>
+        </div>
+        
+
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <!-- this url to check name of path -->
+                <a href="{% url 'inicio' %}" >Inicio</a>
+            </li>
+            <li>
+                <a href="{% url 'articles' %}" >Articulos</a>
+            </li>
+            <li>
+                <a href="{% url 'create_article_with_form' %}" >Crear articulos</a>
+            </li>
+            <li>
+                <a href="{% url 'hola_mundo' %}" >Hola mundo</a>
+            </li>
+            <li>
+                <a href="{% url 'pagina' %}" >Pagina pruebas</a>
+            </li>
+            <li>
+                                        <!-- passing params to url "Jonathan" "Alejando" -->
+                <a href="{% url 'contacto' 'Jonathan' 'Alejando' %}" >Contacto</a>
+            </li>
+        <ul>
+    </nav>
+
+    <div class="bar">
+        <span class="corner-left"></span>
+        <span class="filling-bar"></span>
+        <span class="corner-right"></span>
+    </div>
+
+    
+    <div id="content">
+        <div class="box">
+            <!-- 
+                ====================== CREATING BLOCKS
+                - a block is a chunk of screen that will be substituided by other
+            -->
+
+            <!-- defiing block and its name-->
+            {% block content %} <!-- content : name of block -->
+
+                <!-- in this parte there will be code of different templates -->
+
+                <!-- it html tag will be ommited when I replace with other html sctructure -->
+                <strong>Contenido del bloque original</strong>
+            {% endblock %} <!-- endblock : to close block -->
+
+
+            <!-- comments in django: it comment never will be processed, it is different to a comment in html because a comment in django never will be renderized-->
+            {% comment 'title for comment' %} 
+                <h1>hi hi hi hi</h1> this content never will be renderized
+            {% endcomment %}
+
+        </div>
+
+    </div>
+
+    <footer>
+                                                <!-- it allows get date, it is important pass params -->
+                                                <!-- h:m:s  :   hour, minutes, seconds -->
+                                                <!-- d/m/Y  :   date -->
+        Master en Python &copy; Jonathan Alejandro - {% now "d/m/Y h:m:s" %}
+    </footer>
+
+
+</body>
+</html>
