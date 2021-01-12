@@ -12,23 +12,15 @@
 {% block content %}
     <h1 class="title">Formularios en Django</h1>
 
-    <form action="{% url 'save_article_with_form' %}" method="POST"><!-- I can use GET also -->
+    <form action="" method="POST"><!-- I can use GET also -->
 
         <!-- it is important when work with POST -->
         {% csrf_token %}
-
-        <label for="title">Titulo</label>
-        <input type="text" name="title" placeholder="Escribe tu nombre">
-
-        <label for="content">Contenido</label>
-        <textarea name="content" ></textarea>
-
-        <label for="public">¿Publicado?</label>
-        <select name="public" id="">
-            <option value="1">Si</option>
-            <option value="0">No</option>
-        </select>
-
+        
+        <!-- displaying form sended from views.py -->
+        {{ form.as_p }} <!-- as_p : it will put every field of form in a "p" tag -->
+                         <!-- as_ul : it will put every field of form in a "ul" tag -->
+        
         <input type="submit" value="Guardar">
     </form>
     

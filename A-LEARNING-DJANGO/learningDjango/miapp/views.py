@@ -11,6 +11,9 @@ from miapp.models import Article
 from django.db.models import Q
 # Create your views here.
 
+# importing class to work with forms in django
+from miapp.forms import FormArticle
+
 """ 
     --diferneicas entre un MVC y MVT
     --MVC = modelo vista controdor
@@ -200,6 +203,8 @@ def articles(request) :
         Q(title__contains="2") | Q(title__contains="3") | Q(title__contains="4") #  |  : it acts as OR
     )
 
+    articles = Article.objects.all().order_by('-id')
+
     return render(request, 'articles.html', {
         'articles': articles
     })
@@ -212,19 +217,68 @@ def delete_article(request, id) :
     return redirect('articles')
 
 def save_article_with_form(request) :
-    """ article = Article(
-        title = title, #if I delete this param, mi article equal will be created in my database
-        content = content,
-        public = public
-    ) """
 
-    #saving article in database
-    article.save()
+    # checking if arrives data through GET or POST, but is better use POST because the information will be more sure. When I use POST, I am using headers of request and the information never will be visible
+    if request.method == 'POST' :
 
-    return HttpResponse(f"Article created: <strong>{article.title}</strong> - {article.content}")
+        #collect data by GET or POST
+        title = request.POST['title']
+
+        if len(title) < 5 : 
+            return HttpResponse('<h2>Error. El titulo es muy pequeño</h2>')
+
+        content = request.POST['content']
+        public = request.POST['public']
+
+        article = Article(
+            title = title, #if I delete this param, mi article equal will be created in my database
+            content = content,
+            public = public
+        )
+
+        #saving article in database
+        article.save()
+
+        return HttpResponse(f"Article created: <strong>{article.title}</strong> - {article.content}")
+    else : 
+        return HttpResponse('<h2>No se ha podido crear el articulo</h2>')
+
 
 #to use with form
 def create_article_with_form(request) : 
     return render(request, 'create template with forms.html')
 
+def create_article_with_classes_based_in_django(request) : 
 
+    # checking if there are data by 'POST'
+    if request.method == 'POST' :
+        form = FormArticle(request.POST) # after to pass data, it will clean data, will try valite information
+
+        # checking if form is valid
+        if form.is_valid() :
+            
+            #collecting data
+            data_form = form.cleaned_data # cleaned_data : these are clean data that arrive
+
+            title = data_form.get('title')
+            content = data_form['content']
+            public = data_form['public']
+            
+            # saving article in database
+            article = Article(
+                title = title, #if I delete this param, mi article equal will be created in my database
+                content = content,
+                public = public
+            )
+
+            article.save()
+
+            return HttpResponse(article.title + ' - ' + article.content + ' - ' + str(public))
+
+    else : 
+        # empty form
+        form = FormArticle()
+
+    return render(request, 'create forms based in classes.html', {
+        'form': form
+    })

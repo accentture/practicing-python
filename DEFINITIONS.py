@@ -16,3 +16,7 @@
     --GET : it travel through URL
     --POST : it travel through HTTP headers, it isn't very visible, besides it is more safe
 """
+
+""" 
+    --WIDGET: In a programming context, widget is a generic term for the part of a GUI that allows the user to interface with the application and operating system. Widgets display information and invite the user to act in a number of ways.
+"""

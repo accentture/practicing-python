@@ -53,4 +53,5 @@ urlpatterns = [
     path('borrar-articulos/<int:id>', miapp.views.delete_article, name="delete_article"),
     path('save-article-form/', miapp.views.save_article_with_form, name="save_article_with_form"),
     path('create-article-form/', miapp.views.create_article_with_form, name="create_article_with_form"),
+    path('create-article-with-classes-based-in-django/', miapp.views.create_article_with_classes_based_in_django, name="create_article_with_classes_based_in_django"),
 ]
