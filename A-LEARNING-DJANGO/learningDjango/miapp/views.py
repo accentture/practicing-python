@@ -14,6 +14,9 @@ from django.db.models import Q
 # importing class to work with forms in django
 from miapp.forms import FormArticle
 
+#to use flash messages
+from django.contrib import messages
+
 """ 
     --diferneicas entre un MVC y MVT
     --MVC = modelo vista controdor
@@ -273,7 +276,11 @@ def create_article_with_classes_based_in_django(request) :
 
             article.save()
 
-            return HttpResponse(article.title + ' - ' + article.content + ' - ' + str(public))
+            #creating flash message ( this message only will be displayed once)
+            messages.success(request, f"Has creado correctamente el artículo {article.id}")
+
+            #return HttpResponse(article.title + ' - ' + article.content + ' - ' + str(public))
+            return redirect('articles')
 
     else : 
         # empty form

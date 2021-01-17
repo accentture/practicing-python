@@ -10,25 +10,34 @@
 {% block content %}
     <h1 class="title">Listado de articulos</h1>
 
+    <!-- displaying messages after to add an new article -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <ul>
         {% for article in articles %}
             <li>
                 <h3>{{article.id}} - {{article.title}}</h3>
                 <span>{{article.created_at}}</span>
+
                 {% if article.public %}
                     <strong> - Publicado</strong>
                 {% else %}
                     <strong>Privado</strong>
                 {% endif %}
+                
                 <p>
                     {{article.content}}
                 
                                                 <!-- delete_article : name of path -->
                                                 <!-- id=article.id  : param of url  -->
                     <a href="{% url 'delete_article' id=article.id %}">Eliminar</a>
-                </p>
-
-                                                
+                </p>                                  
                 <br>
             </li>
         {% endfor %}

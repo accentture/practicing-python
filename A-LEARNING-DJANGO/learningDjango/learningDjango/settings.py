@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
+    # it alllows to charge my templates
+    #'miapp'
+
     #charging my app created
     #check that miapp is charged to able to use models
-    'miapp'
+    'miapp.apps.MiappConfig' #taking setting of miapp, it allows to take configurations made for administration panel
 
 ]
 

@@ -1,9 +1,9 @@
-<!-- inheritancing my main layout (inheritancing its html structure)-->
+<!-- inheriting my main layout (inheriting its html structure)-->
 
 
 {% extends '_layout.html' %}
 
-<!-- it is a place adecuated to charge my custom filter -->
+<!-- it is a place adequate to charge my custom filter -->
 {% load filters %}
 
 {% block title %} Formularios en Django {% endblock %}
@@ -11,6 +11,14 @@
 <!-- to charge content in my layout -->
 {% block content %}
     <h1 class="title">Formularios en Django</h1>
+
+    <!--  class 237 : validating forms -->
+    <!-- checking if exists errors -->
+    {% if form.errors %}
+        <strong class="rojo">
+            Hay errores en el formulario
+        </strong>
+    {% endif %}
 
     <form action="" method="POST"><!-- I can use GET also -->
 
