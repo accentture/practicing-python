@@ -1,7 +1,7 @@
 """ 
     --to make migrations :        
     
-                        py manage.py make migrations    
+                        py manage.py makemigrations    
 
             --it command take mi models and check if a migration was created previously, and based in it create a file of migrations, where in this file will be executed all changes in my database
             --after to execute command a file named "0001_initial.py" will be created

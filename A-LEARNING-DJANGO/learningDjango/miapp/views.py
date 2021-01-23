@@ -95,7 +95,7 @@ def hola_mundo(request) :
     #using render
     return render(request, 'hola_mundo.html')
 
-def pagina(request, to_redirect = 0) :
+def pagina(request, to_redirect = 0) : # is important to set a value by default
 
     if to_redirect == 1 :
 
@@ -201,12 +201,15 @@ def articles(request) :
     # ================ raw queries of SQL with Django
     articles = Article.objects.raw("SELECT * FROM miapp_article WHERE title = 'Articulo 9' AND public=0 ")
 
+    
     # ================ using OR
     articles = Article.objects.filter(
         Q(title__contains="2") | Q(title__contains="3") | Q(title__contains="4") #  |  : it acts as OR
     )
 
     articles = Article.objects.all().order_by('-id')
+
+    articles = Article.objects.filter(public = True).order_by('id')  
 
     return render(request, 'articles.html', {
         'articles': articles

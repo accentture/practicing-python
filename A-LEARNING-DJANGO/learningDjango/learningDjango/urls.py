@@ -21,6 +21,9 @@ from django.urls import path
 # from miapp import views as views
 import miapp.views #reomendable importar cuando tenemos multiples vistas porque es mas concreto
 
+# to upload images
+from django.conf import settings #importing settings of project
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -55,3 +58,20 @@ urlpatterns = [
     path('create-article-form/', miapp.views.create_article_with_form, name="create_article_with_form"),
     path('create-article-with-classes-based-in-django/', miapp.views.create_article_with_classes_based_in_django, name="create_article_with_classes_based_in_django"),
 ]
+
+
+
+
+# ==================== configuration to upload images
+# checking if project is in bug mode
+if settings.DEBUG : # DEBUG : it is a variable in settings
+
+
+    # importing function only when is necessary 
+    from django.conf.urls. static import static # it will allow to pass to a static file that can read the framework
+                        # settings.MEDIA_URL : passing url
+                                # passing root directory
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
+

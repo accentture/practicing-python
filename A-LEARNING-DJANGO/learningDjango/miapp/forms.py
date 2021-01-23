@@ -56,7 +56,8 @@ class FormArticle(forms.Form) :
     # creating select for form
     public_options = [
         # options for tag select
-        (1, 'Si'), 
+        #always to use tuples to create options
+        (1, 'Si'),  # the first value is for database, and the second value is for the view
         (0, 'No')
     ]
 

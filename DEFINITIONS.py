@@ -18,12 +18,19 @@
 """
 
 """ 
-    --WIDGET: In a programming context, widget is a generic term for the part of a GUI that allows the user to interface with the application and operating system. Widgets display information and invite the user to act in a number of ways.
+    --WIDGET: 
+    In a programming context, widget is a generic term for the part of a GUI that allows the user to interface with the application and operating system. Widgets display information and invite the user to act in a number of ways.
 
     --it allows to change something visual in a field
 """
 
 
 """ 
-    CRUD : CRUD is an acronym for the four basic types of SQL commands: Create , Read , Update , Delete . Most applications have some kind of CRUD functionality, and we can assume that every programmer had to deal with CRUD at some point
+    CRUD : 
+    CRUD is an acronym for the four basic types of SQL commands: Create , Read , Update , Delete . Most applications have some kind of CRUD functionality, and we can assume that every programmer had to deal with CRUD at some point
+ """
+
+""" 
+    MIGRATIONS :
+     Migrations are Django’s way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema. They’re designed to be mostly automatic, but you’ll need to know when to make migrations, when to run them, and the common problems you might run into.
  """

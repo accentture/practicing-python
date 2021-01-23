@@ -19,29 +19,43 @@
         {% endfor %}
     {% endif %}
 
-    <ul>
+    
         {% for article in articles %}
-            <li>
-                <h3>{{article.id}} - {{article.title}}</h3>
-                <span>{{article.created_at}}</span>
+            <article class="article-item">
+                                    <!-- length: using pipe on length -->
+                {% if article.image != 'null' and article.image.url|length >= 1 %}
+                    <div class="image">
 
-                {% if article.public %}
-                    <strong> - Publicado</strong>
-                {% else %}
-                    <strong>Privado</strong>
+                        <!-- displayin image -->
+                        <img src="{{ article.image.url }}" alt="">
+                    </div>
+
                 {% endif %}
+
+                <dir class="data">
+                    <h2>{{article.id}} - {{article.title}}</h2>
+                    <span class="date">{{article.created_at}}</span>
+
+                    {% if article.public %}
+                        <strong> - Publicado</strong>
+                    {% else %}
+                        <strong>Privado</strong>
+                    {% endif %}
+                    
+                    <p>
+                        {{article.content}}
+                                                    <!-- it is important that "id" is join to "= article" -->
+                                                    <!-- delete_article : name of path -->
+                                                    <!-- id=article.id  : param of url  -->
+                        <a href="{% url 'delete_article' id=article.id %}" class="btn btn-delete">Eliminar</a>
+                    </p>                                  
+                    
+                </dir>
+                <div class="clearFix"></div>
                 
-                <p>
-                    {{article.content}}
-                
-                                                <!-- delete_article : name of path -->
-                                                <!-- id=article.id  : param of url  -->
-                    <a href="{% url 'delete_article' id=article.id %}">Eliminar</a>
-                </p>                                  
-                <br>
-            </li>
+            </article>
         {% endfor %}
-    </ul>
+    
 
 {% endblock %}
 

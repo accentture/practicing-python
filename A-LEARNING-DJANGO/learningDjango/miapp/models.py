@@ -20,7 +20,9 @@ class Article(models.Model) :
     content = models.TextField(verbose_name='Contenido')
 
     # adding a new field in my database, after it is important apply migrations
-    image = models.ImageField(default='null', verbose_name='Imagen')
+                                                    # upload_to:  indicating where upload the image
+
+    image = models.ImageField(default='null', verbose_name='Imagen', upload_to="articles")
 
     public = models.BooleanField(verbose_name='Público')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Creado') #saving date of saving

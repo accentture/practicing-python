@@ -12,4 +12,22 @@ class ArticleAdmin(admin.ModelAdmin) :
 # it is important to regiter my models here, when it is registered, it create a CRUD between my administration panel to able to manage all models and information to able to work with database
 
 admin.site.register(Article, ArticleAdmin)    #registering Article
-admin.site.register(Category)   #registering Category
+admin.site.register(Category)   #registering 
+
+
+
+
+
+
+
+# ===================== to config name of administration panel
+# admin : accesing to admin
+title = "Aprendiendo Django - Jonathan Alejandro feo"
+admin.site.site_header = title
+
+
+# ===================== to change second subtitle of website
+admin.site.site_title = title
+
+# ===================== to change first subtitle of website
+admin.site.index_title = "Mi panel de gestion con Django"
