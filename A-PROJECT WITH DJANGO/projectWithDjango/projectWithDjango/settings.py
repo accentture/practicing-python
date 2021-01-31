@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,8 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+
+    #adding app of ckeditor
+    'ckeditor',
     'mainapp',
-    'pages.apps.PagesConfig'
+    'pages.apps.PagesConfig', #to make configurations in administration panel and charging app
+    'blog.apps.BlogConfig'
 ]
 
 MIDDLEWARE = [
@@ -66,7 +74,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 # charging my context_processors
-                'pages.context_processors.get_pages'
+                'pages.context_processors.get_pages',
+                'blog.processor.get_categories'
             ],
             
         },
@@ -124,3 +133,46 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# ================== configurations to upload image
+MEDIA_URL = '/media/' # indiccating what is name where will be saved multimedia files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # specifying path of this media file
+                                      # BASE_DIR : base directory of the project    
+                                      # media : name of de folder
+
+
+
+
+# to change toolbar of ckeditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source', 'Table', 'Image'] # Table : to add otpion of table to toolbar
+                                                         # Image : to add otpion of image to toolbar
+        ]
+    }
+}
+
+
+
+
+
+
+
+
+
+""" 
+        # =========================== ENRICHED TEXT (CKEDITOR)
+        --to add enriched text in pages from administration panel, these acts as a little word in administration panel
+            1. tiny mce
+            2. ckeditor
+
+        --to install ckeditor in django
+            py -m pip install django-ckeditor
+
+        --to check documentation fo ckeditor : https://django-ckeditor.readthedocs.io/en/latest/
+    """

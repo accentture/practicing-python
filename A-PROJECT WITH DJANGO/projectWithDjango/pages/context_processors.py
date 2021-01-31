@@ -18,7 +18,8 @@ def get_pages(request) :
     #using a query to database
                                                         # flat = True : to get a flat text
     pages = Page.objects.values_list('title', flat = True) # values_list() : it allows select one element that I want to display, in this case it method allow me get three values (id, title, slug)
-
+                                              # order_by('order') : indication that elements will be ordered according order field in administration panel
+    pages = Page.objects.filter(visible = True).order_by('order').values_list('id', 'title', 'slug')
     return {
         'pages': pages
     }

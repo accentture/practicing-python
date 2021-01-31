@@ -14,11 +14,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from mainapp import views
+from django.urls import path, include # include : to include paths of others applications
+
+#importing settings
+from django.conf import settings
+
+#from mainapp import views
+#from pages import views as pages_views # it serves to difference from views of mainapp
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name = 'index_1'),
-    path('inicio/', views.index, name = 'index_2'),
-    path('sobre-nosotros/', views.about, name = 'about'),
+
+    # =============== including paths of other applications
+    # leaving empty this path because I want this path without any level, I don't want a prefix in url
+    path('', include('mainapp.urls')),
+    path('', include('pages.urls')),
+    path('', include('blog.urls'))
 ]
+
+# ================================= configurations for django allows to display media files 
+if settings.DEBUG :     
+    from django.conf.urls.static import static
+
+    #adding static path
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+                                            # document_root : indicating where is absolute path of media directory
+

@@ -1,0 +1,39 @@
+
+{% extends 'layouts/_layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{title}}</h1>
+
+    <!-- to display errors in the form -->
+    {{ register_form.errors }}
+
+    <!-- to pass the form provided by django, first need to create a form -->
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {% comment %}
+            {{register_form.as_p}}
+
+            <!-- other way to display fiels of form, but it is very tedious -->
+            {{register_form.username.label}}
+            {{register_form.username}}
+
+        {% endcomment %}
+
+        <!-- displaying form using for loop -->
+        {% for field in register_form %}
+            <label for="">{{field.label}}</label> 
+            {{field}}
+        {% endfor %}
+
+
+        <input type="submit" value="Registrarse">
+    </form>
+
+{% endblock %}
+

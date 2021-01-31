@@ -1,0 +1,18 @@
+
+{% extends 'layouts/_layout.html' %}
+
+{% block title %}
+    {{category.name}}
+{% endblock %}
+
+{% block content %}
+    <h3>{{category}}</h3>
+    <h1 class="title">{{category.name}}</h1>
+
+    <!-- using include -->
+                                    <!-- with : it allows to pass params to other template -->
+                                        <!-- category.article_set.all : displaying a inverse relation betwen category and article, it alllow me to get all articles that has a relation with category -->
+    {% include 'articles/articles.html' with articles=category.the_inverse_relation.all %}    
+
+{% endblock %}
+

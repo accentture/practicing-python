@@ -31,3 +31,6 @@ admin.site.site_title = title
 
 # ===================== to change first subtitle of website
 admin.site.index_title = "Mi panel de gestion con Django"
+
+
+
