@@ -300,6 +300,7 @@ footer {
 }
 
 .message,
+.alert,
 .alert-success {
   color: white;
   font-weight: bold;
@@ -308,6 +309,14 @@ footer {
   background-color: #26835e;
 }
 
+.alert-warning {
+  background-color: red;
+  width: 84%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+}
 /* ============================================ for ckeditor */
 .left {
   float: left;

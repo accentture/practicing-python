@@ -62,7 +62,7 @@ urlpatterns = [
 
 
 
-# ==================== configuration to upload images
+# ==================== configuration to read images in administration panel
 # checking if project is in bug mode
 if settings.DEBUG : # DEBUG : it is a variable in settings
 

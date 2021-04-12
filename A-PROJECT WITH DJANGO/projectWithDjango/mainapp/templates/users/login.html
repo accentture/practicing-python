@@ -1,0 +1,36 @@
+
+{% extends 'layouts/_layout.html' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{title}}</h1>
+
+    {% if messages %}
+
+        <!-- using for loop because can exists many messages -->
+        {% for message in messages %}
+            <div class="alert alert-warning">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- to pass the form provided by django, first need to create a form -->
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label for="username">Nombre de usurario:</label>
+        <input type="text" name="username">
+
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password">
+
+        <input type="submit" value="Iniciar sesion">
+    </form>
+
+{% endblock %}
+

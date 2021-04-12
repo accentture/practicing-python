@@ -8,4 +8,8 @@
 
 --para crear una app
     py manage.py startapp nameOfApp
+
+--other way to create an app
+    django-admin startapp nameOfApp
+
 """

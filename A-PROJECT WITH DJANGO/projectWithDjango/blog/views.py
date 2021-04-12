@@ -5,7 +5,12 @@ from django.core.paginator import Paginator
 
 from blog.models import Article, Category
 
-# Create your views here.
+#decorator
+from django.contrib.auth.decorators import login_required
+
+
+
+@login_required(login_url = 'login')
 def list(request) : #request is data of petition
 
     articles = Article.objects.all()

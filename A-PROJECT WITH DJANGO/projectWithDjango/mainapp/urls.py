@@ -13,6 +13,8 @@ urlpatterns = [
     path('', views.index, name = 'index_1'),
     path('inicio/', views.index, name = 'index_2'),
     path('registro/', views.register_page, name = 'register'),
+    path('login/', views.login_page, name = 'login'),
+    path('cerrar-sesion/', views.logout_user, name = 'logout'),
 ]
 
 

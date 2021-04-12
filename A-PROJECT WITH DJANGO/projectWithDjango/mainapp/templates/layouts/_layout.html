@@ -36,35 +36,50 @@
                 <!-- this url to check name of path -->
                 <a href="{% url 'index_2' %}" >Inicio</a>
             </li>
-            <li>
-                <!-- this url to check name of path -->
-                <a href="{% url 'list' %}" >Categorias</a>
 
-                <!-- doing desplegable categories -->
-                <ul>
-                    {% for category in categories %} 
-                        <li>
-                            <a href="{% url 'category' category.0 %}" >{{category.1}}</a>
-                        </li>
-                    {% endfor %}
-                    
-                </ul>
-
-            </li>
-
-            <!-- after to create an configurated my context processor,  I can use whatever funcion of it -->
-            
-            {% for page in pages %} <!-- pages : from CONTEXT PROCESSOR OF PAGES -->           
+            <!-- displaying categories if user is loged -->
+            {% if user.email %}
                 <li>
                     <!-- this url to check name of path -->
-                    <a href="{% url 'page' page.2 %}" >{{page.1}}</a>
+                    <a href="{% url 'list' %}" >Categorias</a>
+
+                    <!-- doing desplegable categories -->
+                    <ul>
+                        {% for category in categories %} 
+                            <li>
+                                <a href="{% url 'category' category.0 %}" >{{category.1}}</a>
+                            </li>
+                        {% endfor %}
+                        
+                    </ul>
+
                 </li>
-            {% endfor %}
-            <li>
-                <!-- this url to check name of path -->
-                <a href="{% url 'register' %}" >Registro</a>
-            </li>
-            
+                
+
+                <!-- after to create an configurated my context processor,  I can use whatever funcion of it -->
+                
+                {% for page in pages %} <!-- pages : from CONTEXT PROCESSOR OF PAGES -->           
+                    <li>
+                        <!-- this url to check name of path -->
+                        <a href="{% url 'page' page.2 %}" >{{page.1}}</a>
+                    </li>
+                {% endfor %}
+                
+                <li>
+                    <!-- this url to check name of path -->
+                    <a href="{% url 'logout' %}" >Cerrar sesión</a>
+                </li>
+            {% else %}
+                <li>
+                    <!-- this url to check name of path -->
+                    <a href="{% url 'register' %}" >Registro</a>
+                </li>
+                
+                <li>
+                    <!-- this url to check name of path -->
+                    <a href="{% url 'login' %}" >Login</a>
+                </li>
+            {% endif %}
         <ul>
     </nav>
 

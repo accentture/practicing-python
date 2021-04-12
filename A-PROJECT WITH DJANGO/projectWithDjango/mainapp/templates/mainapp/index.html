@@ -8,6 +8,7 @@
 {% block content %}
 
     <h1>{{title}}</h1>
+    <hr>
 
     <!-- checking if exists flash messages -->
     {% if messages %}
@@ -19,6 +20,20 @@
             </div>
         {% endfor %}
     {% endif %}
+
+
+    <!-- checking if user is loged -->
+    {% if user.email %}
+        <!-- displayin information of user -->
+                                            <!-- other way to access to user -->
+        <h2>Bienvenido {{request.user.first_name}} {{user.last_name}}</h2>
+        <p>
+            {{user.email}}
+        </p>   
+    {% else %}
+        <h2>Identifate para ver más cosas</h2>
+    {% endif %}
+    
 
 {% endblock %}
 

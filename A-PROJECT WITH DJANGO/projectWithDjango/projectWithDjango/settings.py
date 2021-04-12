@@ -85,15 +85,55 @@ TEMPLATES = [
 WSGI_APPLICATION = 'projectWithDjango.wsgi.application'
 
 
+
+
+
+
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+""" 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+} 
+"""
+
+
+#doing configuration for database
+DATABASES = {
+    'default':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'projectdjango', #name of database created in django
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT':3306
+    }
 }
+"""
+    to install a driver to run between python to connect django with mysql
+        py -m pip install mysqlclient
+
+
+    --if the installatin doesn't work go in google to python libraries uci
+    --or go to this url: https://www.lfd.uci.edu/~gohlke/pythonlibs/
+    --after search mysqlclient and click
+
+    --check version and features of python
+        py --version
+        py (64 bits for example) 
+
+    --to exectue migrations
+        py manage.py migrate
+
+"""
+
+
+
 
 
 # Password validation

@@ -30,7 +30,7 @@ class FormArticle(forms.Form) :
 
         #setting validations
         validators=[
-            validators.MinLengthValidator(4, 'El titulo es demasiado corto'),
+            validators.MinLengthValidator(1, 'El titulo es demasiado corto'),
 
                                                     # second param is a message
             validators.RegexValidator('^[A-Za-z0-9ñ ]*$', 'El titulo es mal formado', 'invalid_title') # 3er param is an error code
